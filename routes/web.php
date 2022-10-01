@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/cursos');
 });
-Route::get('/cursos', [CursoController::class, 'index']);
-Route::get('/cursos/criar', [CursoController::class, 'create']);
-Route::post('/cursos/salvar', [CursoController::class, 'store']);
+Route::resource('cursos', CursoController::class)
+    ->only(['index', 'create', 'store']);
+Route::post('/cursos/destroy/{id}',[CursoController::class, 'destroy'])
+    ->name('curso.destroy');

@@ -20,11 +20,12 @@ class CursoController extends Controller
     }
     public function store(Request $request)
     {
-        $nomeCurso = $request->input('nome');
-        $curso = new Cursos();
-        $curso->name=$nomeCurso;
-        $curso->save();
-        return redirect('cursos');
+        Cursos::create($request->all());
 
+        return redirect(route('cursos.index'));
+
+    }
+    public function destroy(Request $request) {
+        Cursos::destroy($request->cursos);
     }
 }
