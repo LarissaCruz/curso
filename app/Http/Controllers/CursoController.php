@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cursos;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
     public function index(Request $request)
     {
-        $cursos = [
-            'Analise',
-            'Historia',
-            'Matematica'
-        ];
+        $cursos = Cursos::all();
 
         return view('cursos.index')->with('cursos', $cursos );
 
@@ -24,10 +21,10 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $nomeCurso = $request->input('nome');
-        if (DB::insert('INSERT INTO cursos (nome) VALUES(?)', [$nomeCurso])){
-            return "OK";
-        }else{
-            return "Deu erro";
-        }
+        $curso = new Cursos();
+        $curso->name=$nomeCurso;
+        $curso->save();
+        return redirect('cursos');
+
     }
 }

@@ -4,7 +4,7 @@
     <a href="/cursos/criar" class="btn btn-dark mb-2">Adicionar</a>
     <ul class="list-group">
         @foreach ($cursos as $curso)
-        <li class="list-group-item">{{$curso}}</li>
+        <li class="list-group-item">{{$curso->name}}</li>
         @endforeach
     </ul>
 </x-layout>
