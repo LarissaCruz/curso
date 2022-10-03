@@ -7,7 +7,7 @@
             <label for="name" class="form-label">Nome:</label>
             <input class="form-control" type="text" id="name" name="name">
         </div>
-        <button type="submit" class="btn btn-primary mb-4">Adicionar</button>
+        <button type="submit" class="btn btn-primary mb-4 ">Adicionar</button>
     </form>
     @isset($mensagemSucesso)
     <div class="alert alert-success">
@@ -19,7 +19,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
-                <th scope="col">#</th>
+
             </tr>
         </thead>
         @foreach ($cursos as $curso)
@@ -27,13 +27,6 @@
             <tr>
                 <th scope="row">{{$curso->id}}</th>
                 <td>{{$curso->name}}</td>
-                <td>
-                    <form action="{{ route('curso.destroy', $curso->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm">X</button>
-                    </form>
-                </td>
             </tr>
         </tbody>
         @endforeach
