@@ -22,10 +22,19 @@ class CursoController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>['required','min:3']
+        ]);
         $curso = Cursos::create($request->all());
 
         return redirect(route('cursos.index'))->with('mensagem.sucesso', "Curso de '{$curso->name}' adicionado com sucesso");;
 
+    }
+    public function destroy (Cursos $curso, Request $request ) {
+
+        Cursos::destroy($request->id );
+
+        return redirect(route('cursos.index'))->with('mensagem.sucesso', "Curso de removido  com sucesso");
     }
 
 }

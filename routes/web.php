@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 Route::resource('cursos', CursoController::class)
     ->only(['index', 'create', 'store']);
+Route::post('/cursos/destroy/{id}',[CursoController::class, 'destroy'])
+    ->name('curso.destroy');
