@@ -27,7 +27,5 @@ class CursoController extends Controller
         return redirect(route('cursos.index'))->with('mensagem.sucesso', "Curso de '{$curso->name}' adicionado com sucesso");;
 
     }
-    public function destroy(Request $request) {
-        Cursos::destroy($request->cursos);
-    }
+
 }
