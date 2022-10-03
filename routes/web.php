@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/cursos/create');
+    return redirect('cursos');
 });
 Route::resource('cursos', CursoController::class)
     ->only(['index', 'create', 'store']);
