@@ -10,19 +10,21 @@ class CursoController extends Controller
     public function index(Request $request)
     {
         $cursos = Cursos::all();
-
-        return view('cursos.index')->with('cursos', $cursos );
-
+        $mensagemSucesso = session('mensagem.sucesso');
+        return view('cursos.index')->with('cursos', $cursos )
+            ->with('mensagemSucesso', $mensagemSucesso);
     }
+
     public function create ()
     {
         return view('cursos.create');
     }
+
     public function store(Request $request)
     {
-        Cursos::create($request->all());
+        $curso = Cursos::create($request->all());
 
-        return redirect(route('cursos.index'));
+        return redirect(route('cursos.index'))->with('mensagem.sucesso', "Curso de '{$curso->name}' adicionado com sucesso");;
 
     }
     public function destroy(Request $request) {
